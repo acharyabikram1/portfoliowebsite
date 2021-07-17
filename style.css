@@ -1,83 +1,98 @@
-/*  import google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
-
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
-html{
-    scroll-behavior: smooth;
+/* Custom Properties, update these for your own design */
+
+:root {
+    --ff-primary: 'Source Sans Pro', sans-serif;
+    --ff-secondary: 'Source Code Pro', monospace;
+    
+    --fw-reg: 300;
+    --fw-bold: 900;
+    
+    --clr-light: #fff;
+    --clr-dark: #303030;
+    --clr-accent: crimson;
+    
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+
+    --bs: 0.25em 0.25em 0.75em rgba(0,0,0,.25),
+    0.125em 0.125em 0.25em rgba(0,0,0,.15);
 }
 
-/* custom scroll bar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-    background: #888;
+@media (min-width: 800px) {
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-body: 1.125rem;
+    }
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+/* General styles */
+
+body {
+    background: var(--clr-light);
+    color: var(--clr-dark);
+    margin: 0;
+    font-family: var(--ff-primary);
+    font-size: var(--fs-body);
+    line-height: 1.6;
 }
 
-/* all similar content styling codes */
-section{
-    padding: 100px 0;
+img {
+    display: block;
+    max-width: 100%;
 }
-.max-width{
-    max-width: 1300px;
-    padding: 0 80px;
-    margin: auto;
+section {
+    padding: 5em 2em;
 }
-.about, .services, .skills, .teams, .contact, footer{
-    font-family: 'Poppins', sans-serif;
-}
-.about .about-content, 
-.services .serv-content,
-.skills .skills-content,
-.contact .contact-content{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-}
-section .title{
-    position: relative;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 500;
-    margin-bottom: 60px;
-    padding-bottom: 20px;
-    font-family: 'Ubuntu', sans-serif;
-}
-section .title::before{
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    width: 180px;
-    height: 3px;
-    background: #111;
-    transform: translateX(-50%);
-}
-section .title::after{
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    font-size: 20px;
-    color: crimson;
-    padding: 0 5px;
-    background: #fff;
-    transform: translateX(-50%);
+strong { font-weight: var(--fw-bold) }
+/* Typography */
+
+h1,
+h2,
+h3 {
+    line-height: 1.1;
+    margin: 0;
 }
 
-/* navbar styling */
+h1 { font-size: var(--fs-h1) }
+h2 { font-size: var(--fs-h2) }
+h3 { font-size: var(--fs-h3) }
+
+.section__title {
+    
+}
+.section__title--intro {
+    font-weight: var(--fw-reg)
+}
+
+.section__subtitle {
+    margin: 0;
+    font-size: var(--fs-h3);
+}
+.section__title--intro strong {
+    display: block;
+}
+.section__subtitle--intro,
+.section__subtitle--about {
+    background: var(--clr-accent);
+    font-family: var(--ff-secondary);
+    margin-bottom: 1em;
+}
+/*header*/
 .navbar{
     position: fixed;
     width: 100%;
@@ -85,11 +100,10 @@ section .title::after{
     padding: 30px 0;
     font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
-	background-image:url(images/ab.png);
 }
 .navbar.sticky{
     padding: 15px 0;
-    background: #60ff26;
+    background: crimson;
 }
 .navbar .max-width{
     display: flex;
@@ -97,12 +111,12 @@ section .title::after{
     justify-content: space-between;
 }
 .navbar .logo a{
-    color: #000;
+    color: rgb(0, 0, 0);
     font-size: 35px;
     font-weight: 600;
 }
 .navbar .logo a span{
-    color: #fff;
+    color: crimson;
     transition: all 0.3s ease;
 }
 .navbar.sticky .logo a span{
@@ -114,14 +128,14 @@ section .title::after{
 }
 .navbar .menu li a{
     display: block;
-    color: #000;
-    font-size: 25px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
     font-weight: 500;
     margin-left: 25px;
     transition: color 0.3s ease;
 }
 .navbar .menu li a:hover{
-    color: #ff0000;
+    color: crimson;
 }
 .navbar.sticky .menu li a:hover{
     color: #fff;
@@ -134,149 +148,217 @@ section .title::after{
     cursor: pointer;
     display: none;
 }
-.scroll-up-btn{
-    position: fixed;
-    height: 45px;
-    width: 42px;
-    background: #ff0000;
-    right: 30px;
-    bottom: 10px;
-    text-align: center;
-    line-height: 45px;
-    color: #fff;
-    z-index: 9999;
-    font-size: 30px;
-    border-radius: 6px;
-    border-bottom-width: 2px;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-.scroll-up-btn.show{
-    bottom: 30px;
-    opacity: 1;
-    pointer-events: auto;
-}
-.scroll-up-btn:hover{
-    filter: brightness(90%);
+
+/*  Intro section  */
+
+.Introduction {
+    position: relative;
 }
 
-  
-/* home section styling */
-.home{
-    display: flex;
-    background: url("images/co.png") no-repeat center;
-    height: 100vh;
-    color: #574851;
-    min-height: 500px;
+@media (min-width: 800px) {
+    .Introduction{
+        display: grid;
+        width: min-content;
+        margin: 0 auto;
+        grid-column-gap: 1em;
+        grid-template-areas: 
+            "img title"
+            "img subtitle";
+        grid-template-columns: min-content max-content;
+    }
+    
+    .intro__img {
+        grid-area: img;
+        min-width: 250px;
+        box-shadow: var(--bs);
+    } 
+    
+    .section__subtitle--intro {
+        align-self: start;
+        grid-column: -1 / 1;
+        display: inline-block;
+    }
+}
+/* skills*/
+.my-skills {
+    background-color: var(--clr-dark);
+    background-image: url(../img/pexels-photo-6330644.jpeg);
     background-size: cover;
-    background-attachment: fixed;
-    font-family: 'Ubuntu', sans-serif;
-}
-.home .max-width{
-    margin: auto 0 auto 30px;
-}
-.home .home-content .text-1{
-    font-size: 27px;
-}
-.home .home-content .text-2{
-    font-size: 75px;
-    font-weight: 600;
-    margin-left: -3px;
-}
-.home .home-content .text-3{
-    font-size: 40px;
-    margin: 5px 0;
-}
-.home .home-content .text-3 span{
-    color: #ff0000;
-    font-weight: 500;
-}
-.home .home-content a{
-    display: inline-block;
-    background: #ff0000;
-    color: #fff;
-    font-size: 25px;
-    padding: 12px 36px;
-    margin-top: 20px;
-    font-weight: 400;
-    border-radius: 6px;
-    border: 2px solid #ff0000;
-    transition: all 0.3s ease;
-}
-.home .home-content a:hover{
-    color: #ff0000;
-    background: none;
+    /* background-blend-mode: multiply; */
+    color: var(--clr-light);
+    text-align: center;
 }
 
-/* about section styling */
-.about .title::after{
-    content: "who i am";
+.section__title--skills {
+    color: var(--clr-accent);
+    position: relative;
 }
-.about .about-content .left{
-    width: 45%;
+
+.section__title--skills::after {
+    content: '';
+    display: block;
+    width: 3em;
+    height: 1px;
+    margin: 0.5em auto 1em;
+    background: currentColor;
 }
-.about .about-content .left img{
-    height: auto;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 6px;
+@media (min-width: 800px) {
+    .skills {
+        display: flex;
+        max-width: 1270px;
+        
+    }
 }
-.about .about-content .right{
-    width: 55%;
+.skills {
+    margin-bottom: 4em;
 }
-.about .about-content .right .text{
-    font-size: 25px;
-    font-weight: 600;
-    margin-bottom: 10px;
+
+/*about me*/
+.about-me {
+    max-width: 1000px;
+    margin: 0 auto;
 }
-.about .about-content .right .text span{
-    color: #574851;
+@media (min-width: 800px) {
+    .about-me {
+        display: grid;
+
+        text-align: justify;
+        grid-template-columns: 1fr 420px;
+        grid-template-areas: 
+            "title img"
+            "subtitle img"
+            "text img";
+        
+    }
+    
+    .section__title--about {
+        grid-area: title;
+    }
+    
+    .aboutimg {
+        grid-area: img;
+        height: 450px;
+    }
 }
-.about .about-content .right p{
-    text-align: justify;
+
+/* contact section styling */
+ .contact .content{
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     flex-direction: column;
+     margin-top: 5px;
+
+ }
+ .section__title_contact::after {
+    content: '';
+    display: block;
+    width: 3em;
+    height: 1px;
+    margin: 0.5em auto 1em;
+    background: currentColor;
 }
-.about .about-content .right a{
-    display: inline-block;
-    background: #ff0000;
-    color: #fff;
-    font-size: 20px;
+ .section__title_contact{
+     text-align: center;
+     color: crimson;
+}
+ .contact .content .row{
+     display:flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     flex-direction: row;
+ }
+ .contact{
+     background-image: url(../img/telephone.jpg);
+ }
+ .contact .content .row .card{
+     background:#fff;
+     width: 220px;
+     margin: 5px;
+     padding: 25px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
+     border-radius:10px ;
+ }
+ .contact .content .row .card .contact-icon{
+    color: crimson;
+    font-size: 4em;
+    text-align: center;
+    transition: transdorm 0.5s ease-in-out;
+ }
+ .contact .content .row .card:hover .contact-icon{
+     transform:translateY(-10px);
+ }
+ .contact .content .row .card .info{
+     text-align: center;
+ }
+ .contact .content .row .card .info h3{
+    color:#111;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 10px;
+}
+.contact .content .row .card .info span{
+    color: crimson;
     font-weight: 500;
-    padding: 10px 30px;
-    margin-top: 20px;
-    border-radius: 6px;
-    border: 2px solid #ff0000;
-    transition: all 0.3s ease;
 }
-.about .about-content .right a:hover{
-    color: #ff0000;
-    background: none;
+.contact-form{
+    background: rgb(245, 203, 203);
+    max-width: 600px;
+    margin-top: 10px;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
 }
- 
- @media screen and (MAX-WIDTH: 1044px)
- {
-		 .navbar .logo a{
-		font-size: 30px;
-	}
-	 .navbar .menu li a{
-		font-size: 20px;
-		margin-left: 15px;
-	}
- }
- 
- @media screen and (MAX-WIDTH: 856px)
- {
-		 .navbar .logo a{
-		font-size: 30px;
-	}
-	 .navbar .menu li a{
-		float:right;
-		font-size: 4vw;
-		margin-left: 3vw;
-	}
- }
- @media screen and (MAX-WIDTH: 999px)
- {
-		 
- }
+.contact-form h3{
+    color: black;
+    font-size: 1.6em;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.contact-form .input-box{
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.contact-form .input-box input,
+.contact-form .input-box textarea{
+    color: black;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    font-weight:400 ;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    resize: none;
+}
+.contact-form .input-box .send-btn{
+    color: black;
+    background: crimson;
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    transition:0.5em ease-in-out ;
+}
+.contact-form .input-box .send-btn:hover{
+    background: rgb(221, 0, 44);
+}
+.footer{
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 1em;
+}
+.footer .footer-title{
+    Font-size:20px;
+    font-weight: 600;
+}
